@@ -22,7 +22,10 @@
                         <flux:text >{{ $referido->sexo }}</flux:text>
 
                         <flux:heading class="mb-0">Telefono</flux:heading>
-                        <flux:text >{{ $referido->telefono }}</flux:text>
+                        <flux:text >
+                            {{ $referido->telefono }}
+                            <flux:button tooltip="Whatsapp" size="xs" icon:trailing="phone" class="ml-3" href="https://api.whatsapp.com/send?phone=52{{ $referido->telefono }}" _blank></flux:button>
+                        </flux:text>
 
                         <flux:heading class="mb-0">Calle  y #</flux:heading>
                         <flux:text >{{ $referido->domicilio }}</flux:text>

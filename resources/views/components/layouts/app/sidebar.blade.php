@@ -21,24 +21,6 @@
 
                     <flux:navlist.item  icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
 
-                    @if(auth()->user()->hasRole('Administrador'))
-
-                        <flux:navlist.item  icon="cog-6-tooth" :href="url('log-viewer')" :current="request()->routeIs('log-viewer')" wire:navigate>{{ __('Logs') }}</flux:navlist.item>
-
-                    @endif
-
-                    @can('Lista de roles')
-
-                        <flux:navlist.item  icon="square-3-stack-3d" :href="route('roles')" :current="request()->routeIs('roles')" wire:navigate>{{ __('Roles') }}</flux:navlist.item>
-
-                    @endcan
-
-                    @can('Lista de permisos')
-
-                        <flux:navlist.item  icon="lock-open" :href="route('permisos')" :current="request()->routeIs('permisos')" wire:navigate>{{ __('Permisos') }}</flux:navlist.item>
-
-                    @endcan
-
                     @can('Lista de usuarios')
 
                         <flux:navlist.item  icon="user-circle" :href="route('usuarios')" :current="request()->routeIs('usuarios')" wire:navigate>{{ __('Usuarios') }}</flux:navlist.item>
@@ -58,6 +40,28 @@
                         <flux:navlist.item  icon="user-group" :href="route('referidos')" :current="request()->routeIs('referidos')" wire:navigate>{{ __('Referidos') }}</flux:navlist.item>
 
                     @endcan
+
+                    <flux:navlist.group heading="Administrador" expandable>
+
+                            @if(auth()->user()->hasRole('Administrador'))
+
+                                <flux:navlist.item  icon="cog-6-tooth" :href="url('log-viewer')" :current="request()->routeIs('log-viewer')" wire:navigate>{{ __('Logs') }}</flux:navlist.item>
+
+                            @endif
+
+                            @can('Lista de roles')
+
+                                <flux:navlist.item  icon="square-3-stack-3d" :href="route('roles')" :current="request()->routeIs('roles')" wire:navigate>{{ __('Roles') }}</flux:navlist.item>
+
+                            @endcan
+
+                            @can('Lista de permisos')
+
+                                <flux:navlist.item  icon="lock-open" :href="route('permisos')" :current="request()->routeIs('permisos')" wire:navigate>{{ __('Permisos') }}</flux:navlist.item>
+
+                            @endcan
+
+                    </flux:navlist.group>
 
                 </flux:navlist.group>
 

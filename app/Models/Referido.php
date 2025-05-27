@@ -16,13 +16,13 @@ class Referido extends Model
     public function getEstadoColorAttribute()
     {
         return [
-            'nuevo' => 'blue',
+            'nuevo' => 'indigo',
             'buzón' => 'yellow',
             'no contesta' => 'orange',
             'no validó referencia' => 'red',
             'validó referencia' => 'green',
             'invitado' => 'pink',
-            'reforzado' => 'red',
+            'reforzado' => 'sky',
             'votado' => 'gray',
         ][$this->status] ?? 'gray';
     }

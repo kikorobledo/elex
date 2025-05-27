@@ -22,7 +22,8 @@ class Referidos extends Component
 
     public $referentes = [];
     public $candidatos = [];
-    public $secciones = [];
+    public $search_seccion = '';
+    public $status;
 
     public Referido $modelo_editar;
 
@@ -153,6 +154,18 @@ class Referidos extends Component
     }
 
     #[Computed]
+    public function secciones(){
+
+        return Seccion::select('id', 'seccion', 'casilla', 'distrito_federal', 'municipio')
+                        ->when($this->search_seccion != '', function($q){
+                            $q->where('seccion', 'LIKE', '%' . $this->search_seccion . '%');
+                        })
+                        ->limit(20)
+                        ->get();
+
+    }
+
+    #[Computed]
     public function referidos(){
 
         if(auth()->user()->hasRole('Telefonista')){
@@ -178,6 +191,7 @@ class Referidos extends Component
 
             return Referido::with('creadoPor:id,name', 'candidato:id,name', 'referente:id,nombre')
                         ->where('nombre', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('status', 'LIKE', '%' . $this->search . '%')
                         ->orWhere(function($q){
                             return $q->whereHas('referente', function($q){
                                 return $q->where('nombre', 'LIKE', '%' . $this->search . '%');
@@ -205,6 +219,8 @@ class Referidos extends Component
 
         $this->crearModeloVacio();
 
+        $this->search = request()->query('status');
+
         $this->candidatos = User::whereHas('roles', function($q){
                                         $q->where('name', 'Candidato');
                                     })
@@ -214,8 +230,6 @@ class Referidos extends Component
 
         $this->referentes = Referente::orderBy('nombre')
                                     ->get();
-
-        $this->secciones = Seccion::select('id', 'seccion')->get();
 
     }
 

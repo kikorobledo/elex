@@ -94,11 +94,19 @@
 
             <flux:input label="Clave electoral" wire:model="modelo_editar.clave_electoral"/>
 
-            <flux:select variant="listbox" searchable placeholder="Selecciona una sección..." wire:model="modelo_editar.seccion_id">
+            <flux:select wire:model="modelo_editar.seccion_id" variant="combobox" :filter="false">
 
-                @foreach ($secciones as $seccion)
+                <x-slot name="input">
 
-                    <flux:select.option value="{{ $seccion->id }}">{{ $seccion->seccion }}</flux:select.option>
+                    <flux:select.input wire:model.live="search_seccion" />
+
+                </x-slot>
+
+                @foreach ($this->secciones as $seccion)
+
+                    <flux:select.option value="{{ $seccion->id }}" wire:key="{{ $seccion->id }}">
+                        {{ $seccion->seccion }}  - Casilla: {{ $seccion->casilla }} - DF: {{ $seccion->distrito_federal }} - Municipio: {{ $seccion->municipio }}
+                    </flux:select.option>
 
                 @endforeach
 
