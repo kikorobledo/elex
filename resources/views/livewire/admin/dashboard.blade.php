@@ -30,7 +30,7 @@
 
             <div class="px-4 border border-neutral-200 dark:border-neutral-700 overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-700 flex items-center gap-6" wire:key="referido-{{ $loop->index }}">
 
-                <div class="mx-auto text-center flex items-center gap-4 cursor-pointer">
+                <div class="mx-auto text-center flex items-center gap-4">
 
                     <flux:text size="xl">{{ $telefonista->name }}</flux:text>
 

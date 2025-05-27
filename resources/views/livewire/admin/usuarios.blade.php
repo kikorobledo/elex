@@ -32,7 +32,23 @@
                     <flux:table.cell>{{ $usuario->candidato->name ?? 'N/A' }}</flux:table.cell>
                     <flux:table.cell>{{  implode(', ', $usuario->getRoleNames()->toArray()) }}</flux:table.cell>
                     <flux:table.cell>
-                        <flux:button size="xs" variant="filled" wire:click="abrirModalEditar( {{ $usuario->id }})">Editar</flux:button>
+
+                        <flux:dropdown>
+
+                            <flux:button icon:trailing="chevron-down" size="xs"></flux:button>
+
+                            <flux:menu>
+
+                                <flux:menu.item icon="pencil" wire:click="abrirModalEditar( {{ $usuario->id }})">Editar</flux:menu.item>
+
+                                <flux:menu.separator />
+
+                                <flux:menu.item icon="arrow-path-rounded-square" wire:click="resetearPassword( {{ $usuario->id }})">Resetear contraseña</flux:menu.item>
+
+                            </flux:menu>
+
+                        </flux:dropdown>
+
                     </flux:table.cell>
                 </flux:table.row>
 

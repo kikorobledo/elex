@@ -25,11 +25,25 @@
                     <flux:table.cell>{{ $role->name }}</flux:table.cell>
                     <flux:table.cell>
 
-                        <flux:button size="xs" variant="filled" wire:click="abrirModalEditar( {{ $role->id }})">Editar</flux:button>
+                        <flux:dropdown>
 
-                        <flux:modal.trigger name="delete">
-                            <flux:button size="xs" variant="danger" wire:click="$set('selected_id', {{ $role->id }})">Borrar</flux:button>
-                        </flux:modal.trigger>
+                            <flux:button icon:trailing="chevron-down" size="xs"></flux:button>
+
+                            <flux:menu>
+
+                                <flux:menu.item icon="pencil" wire:click="abrirModalEditar( {{ $role->id }})">Editar</flux:menu.item>
+
+                                <flux:menu.separator />
+
+                                <flux:modal.trigger name="delete">
+
+                                    <flux:menu.item icon="trash" wire:click="$set('selected_id', {{ $role->id }})">Borrar</flux:menu.item>
+
+                                </flux:modal.trigger>
+
+                            </flux:menu>
+
+                        </flux:dropdown>
 
                     </flux:table.cell>
                 </flux:table.row>
