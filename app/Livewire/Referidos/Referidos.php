@@ -189,7 +189,7 @@ class Referidos extends Component
 
         }else{
 
-            return Referido::with('creadoPor:id,name', 'candidato:id,name', 'referente:id,nombre')
+            return Referido::with('creadoPor:id,name', 'candidato:id,name', 'referente')
                         ->where('nombre', 'LIKE', '%' . $this->search . '%')
                         ->orWhere('status', 'LIKE', '%' . $this->search . '%')
                         ->orWhere(function($q){

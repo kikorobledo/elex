@@ -30,6 +30,9 @@
                         <flux:heading class="mb-0">Calle  y #</flux:heading>
                         <flux:text >{{ $referido->domicilio }}</flux:text>
 
+                        <flux:heading class="mb-0">Referente</flux:heading>
+                        <flux:text >{{ $referido->referente->nombre }}</flux:text>
+
                     </div>
 
                     <div class="space-y-5">
