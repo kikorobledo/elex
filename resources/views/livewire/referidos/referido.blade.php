@@ -23,7 +23,7 @@
 
                         <flux:heading class="mb-0">Telefono</flux:heading>
                         <flux:text >
-                            {{ $referido->telefono }}
+                            <span x-on:click="navigator.clipboard.writeText($refs.telefono.innerText); $flux.toast('El número de teléfono se copió al porta papeles')" x-ref="telefono" class="cursor-pointer">{{ $referido->telefono }}</span>
                             <flux:button tooltip="Whatsapp" size="xs" icon:trailing="phone" class="ml-3" href="https://api.whatsapp.com/send?phone=52{{ $referido->telefono }}" _blank></flux:button>
                         </flux:text>
 
