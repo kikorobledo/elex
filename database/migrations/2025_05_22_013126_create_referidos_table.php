@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('referidos', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
-            $table->string('sexo');
+            $table->string('status')->default('nuevo');
+            $table->string('sexo')->nullable();
             $table->string('nombre');
-            $table->string('telefono');
-            $table->string('domicilio');
-            $table->string('colonia');
-            $table->integer('cp');
-            $table->string('municipio');
-            $table->foreignId('seccion_id')->constrained();
-            $table->string('clave_electoral')->unique();
+            $table->string('telefono')->nullable();
+            $table->string('domicilio')->nullable();
+            $table->string('colonia')->nullable();
+            $table->integer('cp')->nullable();
+            $table->string('municipio')->nullable();
+            $table->foreignId('seccion_id')->nullable();
+            $table->string('clave_electoral')->nullable();
             $table->string('imagen')->nullable();
             $table->foreignId('referente_id')->references('id')->on('referentes');
             $table->foreignId('candidato_id')->references('id')->on('users');
-            $table->foreignId('creado_por')->references('id')->on('users');
+            $table->foreignId('creado_por')->nullable()->references('id')->on('users');
             $table->timestamps();
         });
     }

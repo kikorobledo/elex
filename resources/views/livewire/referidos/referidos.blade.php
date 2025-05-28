@@ -14,7 +14,6 @@
 
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'referente_id'" :direction="$sortDirection" wire:click="sort('referente_id')">Referente</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'sexo'" :direction="$sortDirection" wire:click="sort('sexo')">Sexo</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'nombre'" :direction="$sortDirection" wire:click="sort('nombre')">Nombre</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'status'" :direction="$sortDirection" wire:click="sort('status')">Status</flux:table.column>
             @if(auth()->user()->hasRole(['Administrador', 'Supervisor']))
@@ -32,7 +31,6 @@
                         <flux:avatar size="md" src="{{ $referido->referente->avatarUrl() }}" />
                         {{ $referido->referente->nombre }}
                     </flux:table.cell>
-                    <flux:table.cell>{{ $referido->sexo }}</flux:table.cell>
                     <flux:table.cell>{{ $referido->nombre }}</flux:table.cell>
                     <flux:table.cell>
                         <flux:badge color="{{ $referido->estadoColor }}" size="sm">{{ ucfirst($referido->status) }}</flux:badge>

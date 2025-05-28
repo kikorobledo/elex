@@ -36,12 +36,12 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar usuario'])->syncRoles([$role1, $role4, $role5]);
         Permission::create(['name' => 'Borrar usuario'])->syncRoles([$role1, $role4, $role5]);
 
-        Permission::create(['name' => 'Lista de referentes'])->syncRoles([$role1, $role2, $role4, $role5]);
-        Permission::create(['name' => 'Agregar referentes'])->syncRoles([$role1, $role2, $role4]);
-        Permission::create(['name' => 'Editar referentes'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Lista de referentes'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'Agregar referentes'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
+        Permission::create(['name' => 'Editar referentes'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
 
         Permission::create(['name' => 'Lista de referidos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
-        Permission::create(['name' => 'Agregar referidos'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Agregar referidos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
 
     }
 }

@@ -18,9 +18,6 @@
 
                     <div class="space-y-5">
 
-                        <flux:heading class="mb-0">Sexo</flux:heading>
-                        <flux:text >{{ $referido->sexo }}</flux:text>
-
                         <flux:heading class="mb-0">Telefono</flux:heading>
                         <flux:text >
                             <span x-on:click="navigator.clipboard.writeText($refs.telefono.innerText); $flux.toast({variant: 'success', text:'El número de teléfono se copió al porta papeles'})" x-ref="telefono" class="cursor-pointer">{{ $referido->telefono }}</span>
@@ -169,6 +166,7 @@
             <flux:select variant="listbox" searchable placeholder="Selecciona un estado..." wire:model="estado">
 
                 <flux:select.option value="nuevo">Nuevo</flux:select.option>
+                <flux:select.option value="tel. error">Tel. error</flux:select.option>
                 <flux:select.option value="buzon">Buzon</flux:select.option>
                 <flux:select.option value="no contesta">No contesta</flux:select.option>
                 <flux:select.option value="no validó referencia">No validó referencia</flux:select.option>

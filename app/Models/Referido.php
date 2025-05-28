@@ -24,6 +24,7 @@ class Referido extends Model
             'invitado' => 'pink',
             'reforzado' => 'sky',
             'votado' => 'gray',
+            'tel. error' => 'red',
         ][$this->status] ?? 'gray';
     }
 

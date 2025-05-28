@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('referentes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
             $table->string('avatar')->nullable();
-            $table->foreignId('creado_por')->references('id')->on('users');
+            $table->foreignId('creado_por')->nullable()->references('id')->on('users');
             $table->foreignId('candidato_id')->references('id')->on('users');
             $table->timestamps();
         });
