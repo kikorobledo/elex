@@ -24,6 +24,8 @@ class Referido extends Component
 
     public function guardar(){
 
+        $this->validate();
+
         try {
 
             $this->referido->comentarios()->create([
