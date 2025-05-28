@@ -111,9 +111,13 @@
 
             <flux:card class="space-y-6">
 
-                <div>
+                <div class="flex items-center justify-between">
 
                     <flux:heading size="lg">Comentarios</flux:heading>
+
+                    <flux:modal.trigger name="speach">
+                        <flux:button size="sm">Ver dialogo</flux:button>
+                    </flux:modal.trigger>
 
                 </div>
 
@@ -180,6 +184,48 @@
             <flux:textarea rows="10" label="Comentario" wire:model="comentario" />
 
             <flux:button variant="primary" wire:click="guardar">Crear</flux:button>
+
+        </div>
+
+    </flux:modal>
+
+    <flux:modal name="speach" class="md:w-96">
+
+        <div class="space-y-6">
+
+            <div>
+
+                <flux:heading size="lg">Inicia la llamada:</flux:heading>
+                <flux:text class="mt-2">Referido: —Bueno…</flux:text>
+
+                <flux:text class="mt-2">—Mi nombre es [tu nombre (Falso)], estoy colaborando con el equipo de participación ciudadana para la elección del 1 de junio.</flux:text>
+
+                <flux:heading size="lg">Fase de verificación:</flux:heading>
+                <flux:text class="mt-2">
+                    —Estamos haciendo una breve verificación para confirmar que usted está en nuestra lista de personas promovidas para participar este domingo.
+                    ¿Me puede confirmar si su nombre completo es [Nombre]?
+                    ¿Usted vive en el municipio de [Municipio] y vota en la sección [Sección/Casilla si se conoce]?
+                </flux:text>
+
+                <flux:heading size="lg">Confirmación de participación:</flux:heading>
+                <flux:text class="mt-2">
+                    —Perfecto. ¿Usted tiene pensado acudir a votar este domingo 1 de junio?
+                    (si responde sí)
+                    —Excelente, solo le pedimos que nos confirme si recuerda la ubicación de su casilla o si necesita que se la confirmemos.
+                </flux:text>
+
+                <flux:heading size="lg">Cierre amable:</flux:heading>
+                <flux:text class="mt-2">
+                    —Muchísimas gracias. Lo estaremos acompañando durante la jornada. Cualquier cosa, puede contactarse con su referente o con nosotros.
+                    ¡Buen día y gracias por participar activamente!
+                </flux:text>
+
+                <flux:heading size="lg">¿Y si dice que no va a votar o tiene dudas?</flux:heading>
+                <flux:text class="mt-2">
+                    —Respetamos totalmente su decisión. Solo es importante para nosotros saber si hay algún motivo que le impida acudir (horario, ubicación, no está interesada en participar, o alguna otra situación.), por si podemos ayudarle a resolverlo.
+                </flux:text>
+
+            </div>
 
         </div>
 

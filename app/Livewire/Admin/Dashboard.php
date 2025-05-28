@@ -36,7 +36,12 @@ class Dashboard extends Component
 
         $this->referidos = Referido::select('status', DB::raw('count(*) count'))->groupBy('status')->get();
 
-        $this->telefonistas = User::select('id', 'name')->withCount('comentarios')->get();
+        $this->telefonistas = User::select('id', 'name')
+                                    ->whereHas('roles', function($q){
+                                        $q->where('name', 'Telefonista');
+                                    })
+                                    ->withCount('comentarios')
+                                    ->get();
 
     }
 
