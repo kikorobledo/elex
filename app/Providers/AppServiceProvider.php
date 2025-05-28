@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Livewire\Livewire;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
+        if(config('services.ses.flag')){
+
+            Livewire::setScriptRoute(function ($handle) {
+                return Route::get('/elex/public/vendor/livewire/livewire.js', $handle);
+            });
+
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/elex/public/livewire/update', $handle);
+            });
+
+        }
+
     }
 }

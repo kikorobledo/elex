@@ -168,50 +168,22 @@ class Referidos extends Component
     #[Computed]
     public function referidos(){
 
-        if(auth()->user()->hasRole('Telefonista')){
-
-            return Referido::with('creadoPor:id,name', 'candidato:id,name', 'referente:id,nombre')
-                        ->where('candidato_id', auth()->user()->candidato_id)
-                        ->where('nombre', 'LIKE', '%' . $this->search . '%')
-                        ->orWhere(function($q){
-                            return $q->whereHas('referente', function($q){
-                                return $q->where('nombre', 'LIKE', '%' . $this->search . '%');
-                            });
-                        })
-                        ->orWhere(function($q){
-                            return $q->whereHas('candidato', function($q){
-                                return $q->where('name', 'LIKE', '%' . $this->search . '%');
-                            });
-                        })
-                        ->inRandomOrder()
-                        ->limit(5)
-                        ->get();
-
-        }else{
-
-            return Referido::with('creadoPor:id,name', 'candidato:id,name', 'referente')
-                        ->where('nombre', 'LIKE', '%' . $this->search . '%')
-                        ->orWhere('status', 'LIKE', '%' . $this->search . '%')
-                        ->orWhere(function($q){
-                            return $q->whereHas('referente', function($q){
-                                return $q->where('nombre', 'LIKE', '%' . $this->search . '%');
-                            });
-                        })
-                        ->orWhere(function($q){
-                            return $q->whereHas('candidato', function($q){
-                                return $q->where('name', 'LIKE', '%' . $this->search . '%');
-                            });
-                        })
-                        ->when(auth()->user()->hasRole(['Candidato']), function($q){
-                            $q->where('candidato_id', auth()->id());
-                        })
-                        ->when(auth()->user()->hasRole(['Supervisor', 'Capturista']), function($q){
-                            $q->where('candidato_id', auth()->user()->candiadto_id);
-                        })
-                        ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
-                        ->paginate($this->pagination);
-
-        }
+        return Referido::with('creadoPor:id,name', 'candidato:id,name', 'referente')
+                    ->where('nombre', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere('status', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere(function($q){
+                        return $q->whereHas('referente', function($q){
+                            return $q->where('nombre', 'LIKE', '%' . $this->search . '%');
+                        });
+                    })
+                    ->when(auth()->user()->hasRole(['Candidato']), function($q){
+                        $q->where('candidato_id', auth()->id());
+                    })
+                    ->when(auth()->user()->hasRole(['Supervisor', 'Capturista']), function($q){
+                        $q->where('candidato_id', auth()->user()->candiadto_id);
+                    })
+                    ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+                    ->paginate($this->pagination);
 
     }
 

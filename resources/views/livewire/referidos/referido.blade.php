@@ -69,7 +69,7 @@
 
                 <div>
 
-                    <flux:heading size="lg">Sección</flux:heading>
+                    <flux:heading size="lg">Donde votar</flux:heading>
 
                 </div>
 
@@ -92,51 +92,15 @@
                         <flux:heading class="mb-0">Localidad</flux:heading>
                         <flux:text >{{ $referido->seccion->localidad }}</flux:text>
 
+                    </div>
+
+                    <div class="space-y-5">
+
                         <flux:heading class="mb-0">Casilla</flux:heading>
                         <flux:text >{{ $referido->seccion->casilla }}</flux:text>
 
                         <flux:heading class="mb-0">Ubicación</flux:heading>
                         <flux:text >{{ $referido->seccion->ubicacion }}</flux:text>
-
-                    </div>
-
-                    <div class="space-y-5">
-
-                        <flux:heading class="mb-0">Prsidente</flux:heading>
-                        <flux:text >{{ $referido->seccion->presidente }}</flux:text>
-
-                        <flux:heading class="mb-0">Secretario 1</flux:heading>
-                        <flux:text >{{ $referido->seccion->secretario_1 }}</flux:text>
-
-                        <flux:heading class="mb-0">Secretario 2</flux:heading>
-                        <flux:text >{{ $referido->seccion->secretario_1 }}</flux:text>
-
-                        <flux:heading class="mb-0">Escrutador 1</flux:heading>
-                        <flux:text >{{ $referido->seccion->escrutador_1 }}</flux:text>
-
-                        <flux:heading class="mb-0">Escrutador 2</flux:heading>
-                        <flux:text >{{ $referido->seccion->escrutador_2 }}</flux:text>
-
-                        <flux:heading class="mb-0">Escrutador 3</flux:heading>
-                        <flux:text >{{ $referido->seccion->escrutador_3 }}</flux:text>
-
-                        <flux:heading class="mb-0">Escrutador 4</flux:heading>
-                        <flux:text >{{ $referido->seccion->escrutador_4 }}</flux:text>
-
-                        <flux:heading class="mb-0">Escrutador 5</flux:heading>
-                        <flux:text >{{ $referido->seccion->escrutador_5 }}</flux:text>
-
-                        <flux:heading class="mb-0">Escrutador 6</flux:heading>
-                        <flux:text >{{ $referido->seccion->escrutador_6 }}</flux:text>
-
-                        <flux:heading class="mb-0">Suplente 1</flux:heading>
-                        <flux:text >{{ $referido->seccion->suplente_1 }}</flux:text>
-
-                        <flux:heading class="mb-0">Suplente 2</flux:heading>
-                        <flux:text >{{ $referido->seccion->suplente_2 }}</flux:text>
-
-                        <flux:heading class="mb-0">Suplente 3</flux:heading>
-                        <flux:text >{{ $referido->seccion->suplente_3 }}</flux:text>
 
                     </div>
 
@@ -168,7 +132,7 @@
 
                 <div class="space-y-6">
 
-                    @foreach ($referido->comentarios as $comentario)
+                    @foreach ($referido->comentarios->reverse() as $comentario)
 
                         <flux:card class="space-y-2">
 
@@ -176,7 +140,7 @@
 
                             <flux:heading class="mb-0">Comentario</flux:heading>
                             <flux:text >{{ $comentario->contenido }}</flux:text>
-                            <flux:text class="text-xs text-right">{{ $comentario->created_at }}</flux:text>
+                            <flux:text class="text-xs text-right">{{ $comentario->created_at->diffForHumans(now(), Carbon\CarbonInterface::DIFF_RELATIVE_AUTO, true, 3) }}</flux:text>
 
                         </flux:card>
 
