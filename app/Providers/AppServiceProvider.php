@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
+
         URL::forceScheme('https');
 
         if(config('services.ses.flag')){
@@ -30,11 +31,11 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
 
             Livewire::setScriptRoute(function ($handle) {
-                return Route::get('public/vendor/livewire/livewire.js', $handle);
+                return Route::get('/public/vendor/livewire/livewire.js', $handle);
             });
 
             Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('public/livewire/update', $handle);
+                return Route::post('/public/livewire/update', $handle);
             });
 
         }
