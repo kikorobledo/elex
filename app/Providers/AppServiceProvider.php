@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
 
         if(config('services.ses.flag')){
 
+            URL::forceScheme('https');
+
             Livewire::setScriptRoute(function ($handle) {
                 return Route::get('/elex/public/vendor/livewire/livewire.js', $handle);
             });
