@@ -39,7 +39,15 @@
                         <flux:table.cell>{{ $referido->candidato->name ?? 'N/A' }}</flux:table.cell>
                     @endif
                     <flux:table.cell>
-                        <flux:button size="xs" variant="filled" href="{{ route('referido', $referido) }}">Ver detalles</flux:button>
+
+                        @if (!$referido->seccion_id)
+                            <flux:badge size="sm" color="red">Asignar sección</flux:badge>
+                        @else
+                            <flux:button size="xs" variant="filled" href="{{ route('referido', $referido) }}">Ver detalles</flux:button>
+                        @endif
+
+                        <flux:button size="xs" variant="filled" wire:click="abrirModalEditar( {{ $referido->id }})">Editar</flux:button>
+
                     </flux:table.cell>
                 </flux:table.row>
 
@@ -56,7 +64,13 @@
             <div>
 
                 <flux:heading size="lg">
+
+                    @if($crear)
                         Nuevo Referido
+                    @elseif($editar)
+                        Editar Referido
+                    @endif
+
                 </flux:heading>
 
             </div>
@@ -110,7 +124,15 @@
 
             </flux:select>
 
-            <flux:button variant="primary" wire:click="guardar">Crear</flux:button>
+            @if($crear)
+
+                <flux:button variant="primary" wire:click="guardar">Crear</flux:button>
+
+            @else
+
+                <flux:button variant="primary" wire:click="actualizar">Actualizar</flux:button>
+
+            @endif
 
         </div>
 
