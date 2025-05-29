@@ -27,13 +27,13 @@ class AppServiceProvider extends ServiceProvider
 
             URL::forceScheme('https');
 
-            /* Livewire::setScriptRoute(function ($handle) {
-                return Route::get('/public/vendor/livewire/livewire.js', $handle);
+            Livewire::setScriptRoute(function ($handle) {
+                return Route::get('/elex/public/vendor/livewire/livewire.js', $handle);
             });
 
             Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/public/livewire/update', $handle);
-            }); */
+                return Route::post('/elex/livewire/update', $handle);
+            });
 
         }
 
