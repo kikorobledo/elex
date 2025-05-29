@@ -8,7 +8,7 @@
 
             <div class="px-4 border border-neutral-200 dark:border-neutral-700 overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-700 flex items-center gap-6" wire:key="referido-{{ $loop->index }}">
 
-                <a class="mx-auto text-center flex items-center gap-4 cursor-pointer" href="{{ route('referidos') . '?status=' . $referido->status }}">
+                <a class="mx-auto text-center flex items-center gap-4 cursor-pointer" href="{{ route('referidos') . '?status=' . rawurlencode($referido->status) }}">
 
                     <flux:text size="xl">{{ $referido->count }}</flux:text>
 

@@ -191,7 +191,7 @@ class Referidos extends Component
 
         $this->crearModeloVacio();
 
-        $this->search = request()->query('status');
+        $this->search = urldecode(request()->query('status'));
 
         $this->candidatos = User::whereHas('roles', function($q){
                                         $q->where('name', 'Candidato');
