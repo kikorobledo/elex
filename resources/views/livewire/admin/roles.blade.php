@@ -10,7 +10,7 @@
 
     </div>
 
-    <flux:table :paginate="$this->roles">
+    <flux:table :paginate="$this->roles" wire:loading.class.delaylongest="opacity-50">
 
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Nombre</flux:table.column>

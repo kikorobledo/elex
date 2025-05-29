@@ -10,7 +10,7 @@
 
     </div>
 
-    <flux:table :paginate="$this->referentes">
+    <flux:table :paginate="$this->referentes" wire:loading.class.delaylongest="opacity-50">
 
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'nombre'" :direction="$sortDirection" wire:click="sort('nombre')">Nombre</flux:table.column>
