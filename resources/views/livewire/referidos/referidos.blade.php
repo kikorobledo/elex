@@ -10,7 +10,7 @@
 
     </div>
 
-    <flux:table :paginate="!auth()->user()->hasRole('Telefonista') ? $this->referidos : null">
+    <flux:table :paginate="$this->referidos">
 
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'referente_id'" :direction="$sortDirection" wire:click="sort('referente_id')">Referente</flux:table.column>

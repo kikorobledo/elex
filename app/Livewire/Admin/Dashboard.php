@@ -41,7 +41,9 @@ class Dashboard extends Component
                                         $q->where('name', 'Telefonista');
                                     })
                                     ->withCount('comentarios')
-                                    ->get();
+                                    ->get()
+                                    ->sortBy('comentarios_count')
+                                    ->reverse();
 
     }
 

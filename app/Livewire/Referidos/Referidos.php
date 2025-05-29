@@ -177,10 +177,10 @@ class Referidos extends Component
                         });
                     })
                     ->when(auth()->user()->hasRole(['Candidato']), function($q){
-                        $q->where('candidato_id', auth()->id());
+    	                $q->where('candidato_id', auth()->id());
                     })
-                    ->when(auth()->user()->hasRole(['Supervisor', 'Capturista']), function($q){
-                        $q->where('candidato_id', auth()->user()->candiadto_id);
+                    ->when(auth()->user()->hasRole(['Supervisor', 'Capturista', 'Telefonista']), function($q){
+                        $q->where('candidato_id', auth()->user()->candidato_id);
                     })
                     ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
                     ->paginate($this->pagination);
