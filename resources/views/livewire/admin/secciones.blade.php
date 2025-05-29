@@ -2,7 +2,13 @@
 
     <flux:heading size="xl" level="1" class="mb-4">Secciones</flux:heading>
 
-    <flux:input size="sm" placeholder="Buscar..." class="mb-4" wire:model.live="search"/>
+    <div class="flex gap-5 items-center">
+
+        <flux:input size="sm" placeholder="Buscar..." class="" wire:model.live="search"/>
+
+        <flux:button wire:click="abrirModalCrear">Agregar</flux:button>
+
+    </div>
 
     <flux:table :paginate="$this->secciones">
 
@@ -74,6 +80,74 @@
                 <flux:text class="mt-2"><span class="font-medium text-gray-500">Suplente 3:</span> {{ $modelo_editar?->suplente_3 }}</flux:text>
 
             </div>
+
+        </div>
+
+    </flux:modal>
+
+    <flux:modal name="modal" variant="flyout">
+
+        <div class="space-y-6">
+
+            <div>
+
+                <flux:heading size="lg">
+                    @if($crear)
+                        Nueva Sección
+                    @elseif($editar)
+                        Editar Sección
+                    @endif
+                </flux:heading>
+
+            </div>
+
+            <flux:input type="number" label="Sección" wire:model="modelo_editar.seccion"/>
+
+            <flux:input label="Distrito federal" wire:model="modelo_editar.distrito_federal"/>
+
+            <flux:input label="Distrito local" wire:model="modelo_editar.distrito_local"/>
+
+            <flux:input label="Municipio" wire:model="modelo_editar.municipio"/>
+
+            <flux:input label="Localidad" wire:model="modelo_editar.localidad"/>
+
+            <flux:input label="Casilla" wire:model="modelo_editar.casilla"/>
+
+            <flux:input label="Presidente" wire:model="modelo_editar.presidente"/>
+
+            <flux:input label="Secretario 1" wire:model="modelo_editar.secretario_1"/>
+
+            <flux:input label="Secretario 2" wire:model="modelo_editar.secretario_2"/>
+
+            <flux:input label="Escrutador 1" wire:model="modelo_editar.escrutador_1"/>
+
+            <flux:input label="Escrutador 2" wire:model="modelo_editar.escrutador_2"/>
+
+            <flux:input label="Escrutador 3" wire:model="modelo_editar.escrutador_3"/>
+
+            <flux:input label="Escrutador 4" wire:model="modelo_editar.escrutador_4"/>
+
+            <flux:input label="Escrutador 5" wire:model="modelo_editar.escrutador_5"/>
+
+            <flux:input label="Escrutador 6" wire:model="modelo_editar.escrutador_6"/>
+
+            <flux:input label="Suplente 1" wire:model="modelo_editar.suplente_1"/>
+
+            <flux:input label="Suplente 2" wire:model="modelo_editar.suplente_2"/>
+
+            <flux:input label="Suplente 3" wire:model="modelo_editar.suplente_3"/>
+
+            <flux:textarea rows="10" label="Ubicación" wire:model="modelo_editar.ubicacion" />
+
+            @if($crear)
+
+                <flux:button variant="primary" wire:click="guardar">Crear</flux:button>
+
+            @else
+
+                <flux:button variant="primary" wire:click="actualizar">Actualizar</flux:button>
+
+            @endif
 
         </div>
 

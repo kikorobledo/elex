@@ -5,10 +5,12 @@ namespace App\Livewire\Admin;
 use Flux\Flux;
 use App\Models\Seccion;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use App\Traits\ComponentesTrait;
 use Livewire\Attributes\Computed;
-use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 #[Layout('components.layouts.app')]
 class Secciones extends Component
@@ -19,6 +21,30 @@ class Secciones extends Component
 
     public $modelo_editar;
 
+    protected function rules(){
+        return [
+            'modelo_editar.distrito_federal' => 'required',
+            'modelo_editar.distrito_local' => 'required',
+            'modelo_editar.municipio' => 'required',
+            'modelo_editar.localidad' => 'required',
+            'modelo_editar.seccion' => 'required',
+            'modelo_editar.casilla' => 'required',
+            'modelo_editar.presidente' => 'required',
+            'modelo_editar.secretario_1' => 'nullable',
+            'modelo_editar.secretario_2' => 'nullable',
+            'modelo_editar.escrutador_1' => 'nullable',
+            'modelo_editar.escrutador_2' => 'nullable',
+            'modelo_editar.escrutador_3' => 'nullable',
+            'modelo_editar.escrutador_4' => 'nullable',
+            'modelo_editar.escrutador_5' => 'nullable',
+            'modelo_editar.escrutador_6' => 'nullable',
+            'modelo_editar.suplente_1' => 'nullable',
+            'modelo_editar.suplente_2' => 'nullable',
+            'modelo_editar.suplente_3' => 'nullable',
+            'modelo_editar.ubicacion' => 'required',
+         ];
+    }
+
     public function crearModeloVacio(){
         $this->modelo_editar =  Seccion::make();
     }
@@ -28,6 +54,77 @@ class Secciones extends Component
         $this->modelo_editar = $seccion;
 
         Flux::modal('ver')->show();
+
+    }
+
+    public function abrirModalEditar(Seccion $modelo){
+
+        $this->resetearTodo();
+
+        Flux::modal('modal')->show();
+
+        $this->editar = true;
+
+        if($this->modelo_editar->isNot($modelo))
+            $this->modelo_editar = $modelo;
+
+    }
+
+    public function guardar(){
+
+        $this->validate();
+
+        try {
+
+            DB::transaction(function () {
+
+                $this->modelo_editar->save();
+
+                Flux::toast(variant: 'success', text:'La sección se creó con éxito.');
+
+            });
+
+            $this->resetearTodo();
+
+            Flux::modal('modal')->close();
+
+        } catch (\Throwable $th) {
+
+            Log::error("Error al crear sección por el usuario: (id: " . auth()->user()->id . ") " . auth()->user()->name . ". " . $th);
+
+            Flux::toast(variant: 'danger', text:"Ha ocurrido un error.");
+
+            $this->resetearTodo();
+        }
+
+    }
+
+    public function actualizar(){
+
+        $this->validate();
+
+        try{
+
+            DB::transaction(function () {
+
+                $this->modelo_editar->save();
+
+                Flux::toast(variant: 'success', text:"La sección se actualizó con éxito.");
+
+            });
+
+            $this->resetearTodo();
+
+            Flux::modal('modal')->close();
+
+        } catch (\Throwable $th) {
+
+            Log::error("Error al actualizar sección por el usuario: (id: " . auth()->user()->id . ") " . auth()->user()->name . ". " . $th);
+
+            Flux::toast(variant: 'danger', text:"Ha ocurrido un error.");
+
+            $this->resetearTodo();
+        }
 
     }
 
