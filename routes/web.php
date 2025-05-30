@@ -7,6 +7,7 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Secciones;
 use App\Livewire\Admin\Referentes;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Reportes\Reportes;
 use App\Livewire\Settings\Password;
 use App\Livewire\Referidos\Referido;
 use App\Livewire\Referidos\Referidos;
@@ -35,6 +36,8 @@ Route::middleware(['auth', 'esta.activo'])->group(function () {
     Route::get('referidos', Referidos::class)->name('referidos');
 
     Route::get('referido/{referido}', Referido::class)->name('referido');
+
+    Route::get('reportes', Reportes::class)->middleware('permission:Reportes')->name('reportes');
 
     Route::redirect('settings', 'settings/profile');
 

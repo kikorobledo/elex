@@ -30,7 +30,7 @@ class Comentario extends Model
     }
 
     public function creadoPor(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'creado_por');
     }
 
 }

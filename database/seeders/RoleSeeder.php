@@ -43,5 +43,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Lista de referidos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
         Permission::create(['name' => 'Agregar referidos'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
 
+        Permission::create(['name' => 'Reportes'])->syncRoles([$role1]);
+
     }
 }

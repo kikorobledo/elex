@@ -45,6 +45,12 @@
 
                     @endcan
 
+                    @can('Reportes')
+
+                        <flux:navlist.item  icon="presentation-chart-bar" :href="route('reportes')" :current="request()->routeIs('reportes')" wire:navigate>{{ __('Reportes') }}</flux:navlist.item>
+
+                    @endcan
+
                     @if(auth()->user()->hasRole('Administrador'))
 
                         <flux:navlist.group heading="Administrador" expandable>

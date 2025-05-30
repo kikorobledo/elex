@@ -141,6 +141,7 @@
 
                             <flux:heading class="mb-0">Comentario</flux:heading>
                             <flux:text >{{ $comentario->contenido }}</flux:text>
+                            <flux:text class="text-xs text-right">{{ $comentario->creadoPor->name }}</flux:text>
                             <flux:text class="text-xs text-right">{{ $comentario->created_at->diffForHumans(now(), Carbon\CarbonInterface::DIFF_RELATIVE_AUTO, true, 3) }}</flux:text>
 
                         </flux:card>

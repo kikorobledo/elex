@@ -29,15 +29,15 @@ class Referido extends Model
     }
 
     public function creadoPor(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'creado_por');
     }
 
     public function seccion(){
-        return $this->belongsTo(Seccion::class);
+        return $this->belongsTo(Seccion::class, 'seccion_id');
     }
 
     public function referente(){
-        return $this->belongsTo(Referente::class);
+        return $this->belongsTo(Referente::class, 'referente_id');
     }
 
     public function candidato(){

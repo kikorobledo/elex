@@ -106,7 +106,7 @@
 
             <flux:input label="Clave electoral" wire:model="modelo_editar.clave_electoral"/>
 
-            <flux:select wire:model="modelo_editar.seccion_id" variant="combobox" :filter="false">
+            <flux:select wire:model="modelo_editar.seccion_id" variant="combobox" :filter="false" placeholder="Selecciona una sección...">
 
                 <x-slot name="input">
 

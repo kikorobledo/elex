@@ -37,7 +37,7 @@ class Referido extends Component
 
             $this->referido->update(['status' => $this->estado]);
 
-            $this->referido->load('comentarios');
+            $this->referido->load('comentarios.creadoPor');
 
             Flux::toast(variant: 'success', text:'El comentario se creó con éxito.');
 
